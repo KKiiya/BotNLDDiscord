@@ -50,7 +50,7 @@ module.exports = {
       const description = interaction.options.getString('description');
       var emoji1 = interaction.options.getString('upvote-emoji') || "👍"
       var emoji2 = interaction.options.getString('downvote-emoji') || "👎"
-      var color = interaction.options.getString('color') || 0xee0000
+      var color = interaction.options.getString('color') || 0xff009c
       var thumbnail = interaction.options.getString('thumbnail'); 
       const embed = new EmbedBuilder()
       

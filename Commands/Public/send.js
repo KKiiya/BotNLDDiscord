@@ -103,7 +103,7 @@ module.exports = {
       const field5cont = interaction.options.getString('field5content');
       var subtitle = interaction.options.getString('subtitle') || " "
       var subimage = interaction.options.getString('subimage');
-      var color = interaction.options.getString('color') || 0xee0000
+      var color = interaction.options.getString('color') || 0xf777e8
       var thumbnail = interaction.options.getString('thumbnail');
 
       switch (subCommand) {
