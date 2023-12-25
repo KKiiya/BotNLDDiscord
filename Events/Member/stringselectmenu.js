@@ -159,7 +159,18 @@ module.exports = {
             });
 
             const data = JSON.parse(rawData);
-            if (!data.ticketsInfo[guild.id].ticketCount) data.ticketsInfo[guild.id].ticketCount = 0;
+            
+            try {
+                if (!data.ticketsInfo[guild.id].ticketCount) data.ticketsInfo[guild.id].ticketCount = 0;
+            } catch (error) {
+                data.ticketsInfo[guild.id] = {
+                    ticketsCategory: data.ticketsInfo[guild.id].ticketsCategory,
+                    ticketsCreationChannel: data.ticketsInfo[guild.id].ticketsCreationChannel,
+                    ticketCount: 0
+                }
+                fs.writeFileSync('data.json', data);
+            }
+
             data.ticketsInfo[guild.id].ticketCount++;
             
             fs.writeFileSync('data.json', data);
