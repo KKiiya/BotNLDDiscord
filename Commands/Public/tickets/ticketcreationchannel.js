@@ -22,9 +22,9 @@ module.exports = {
         embed.setDescription("Create a ticket to get help from our staff team!");
         embed.setThumbnail(interaction.client.user.avatarURL());
         embed.setColor(0xFF0000);
-        embed.setAuthor({
-            name: interaction.guild.name,
-            iconURL: interaction.guild.iconURL()
+        embed.setFooter({
+            text: "Ticket System",
+            iconURL: interaction.client.user.avatarURL()
         });
 
 
