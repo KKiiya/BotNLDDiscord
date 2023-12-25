@@ -219,7 +219,7 @@ module.exports = {
                     break;
                 case "other-help":
                     let createdChannel;
-                    console.log(guild.channels)
+                    console.log(guild.channels.cache)
                     guild.channels.create({
                         name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
