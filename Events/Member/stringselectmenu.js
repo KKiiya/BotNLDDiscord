@@ -180,9 +180,9 @@ module.exports = {
             
             switch (value) {
                 case "resources-help":
-                    console.log(`resources-help`)
+                    let createdChannel2;
                     guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
-                        type: ChannelType.GUILD_TEXT,
+                        type: ChannelType.GuildText,
                         parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
                             {
@@ -195,7 +195,7 @@ module.exports = {
                             }
                         ]
                     }).then(channel => {
-                        console.log(`sending embed`)
+                        createdChannel2 = channel.id;
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Resources Help")
                             .setDescription("Please wait for a staff member to help you!")
@@ -210,17 +210,16 @@ module.exports = {
                             embeds: [embed]
                         })
                     })
-                    console.log(`finished`)
 
                     interaction.reply({
-                        content: "Ticket created!",
+                        content: `Ticket created! <#${createdChannel2}>`,
                         ephemeral: true
                     })
                     break;
                 case "other-help":
-                    console.log(`other-help`)
+                    let createdChannel;
                     guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
-                        type: ChannelType.GUILD_TEXT,
+                        type: ChannelType.GuildText,
                         parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
                             {
@@ -233,7 +232,7 @@ module.exports = {
                             }
                         ]
                     }).then(channel => {
-                        console.log(`sending embed`)
+                        createdChannel = channel.id;
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Other")
                             .setDescription("Please wait for a staff member to help you!")
@@ -248,10 +247,9 @@ module.exports = {
                             embeds: [embed]
                         })
                     })
-                    console.log(`finished`)
 
                     interaction.reply({
-                        content: "Ticket created!",
+                        content: `Ticket created! <#${createdChannel}>`,
                         ephemeral: true
                     })
                     break;
