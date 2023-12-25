@@ -22,6 +22,12 @@ module.exports = {
         embed.setDescription("Create a ticket to get help from our staff team!");
         embed.setThumbnail(interaction.client.user.avatarURL());
         embed.setColor(0xFF0000);
+        embed.addFields(
+            {
+                name: "How to create a ticket?",
+                value: "Click on the selection menu below to select a ticket category!"
+            }
+        )
         embed.setFooter({
             text: "Ticket System",
             iconURL: interaction.client.user.avatarURL()
@@ -30,13 +36,11 @@ module.exports = {
 
         // Write data to data.json
         const data = {
-            guilds: [
-                {
-                    id: guildId,
+            ticketsInfo: [
+                interaction.guild.id, {
                     ticketsCategory: categoryId,
                     ticketsCreationChannel: channelId,
-                }
-            ]
+                }]
         };
         
         fs.writeFileSync('data.json', JSON.stringify(data));
