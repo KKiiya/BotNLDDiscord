@@ -156,8 +156,8 @@ module.exports = {
             const data = {
                 ticketsInfo: [
                     interaction.guild.id, {
-                        ticketsCategory: categoryId,
-                        ticketsCreationChannel: channelId,
+                        ticketsCategory: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketsCategory,
+                        ticketsCreationChannel: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketsCreationChannel,
                         ticketCount: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketCount + 1
                     }]
             };
@@ -226,7 +226,7 @@ module.exports = {
                             embeds: [embed]
                         })
                     })
-                    
+
                     interaction.reply({
                         content: "Ticket created!",
                         ephemeral: true
