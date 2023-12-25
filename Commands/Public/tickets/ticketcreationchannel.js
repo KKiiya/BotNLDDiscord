@@ -36,8 +36,8 @@ module.exports = {
 
 
         const info = {
-            ticketsCategory: channelId,
-            ticketsCreationChannel: categoryId
+            ticketsCategory: categoryId,
+            ticketsCreationChannel: channelId
         };
         
         const data = {

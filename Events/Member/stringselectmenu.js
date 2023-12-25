@@ -219,7 +219,6 @@ module.exports = {
                     break;
                 case "other-help":
                     let createdChannel;
-                    console.log(guild.channels.cache.find(channel => channel.id === data[guildId].ticketsCategory))
                     guild.channels.create({
                         name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
