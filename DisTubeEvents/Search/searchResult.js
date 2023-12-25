@@ -24,7 +24,7 @@ module.exports = {
             iconURL: message.author.avatarURL()
         })
         embed.setTimestamp(Date.now())
-        embed.setColor(0xf777e8)
+        embed.setColor(0x00FF00)
 
         for (i = 0; i < 10; i++) {
             embed.addFields({

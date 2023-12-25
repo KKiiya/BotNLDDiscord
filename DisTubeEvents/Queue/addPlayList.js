@@ -16,7 +16,7 @@ module.exports = {
         embed.setURL(playlist.url)
         embed.setDescription(`Added ${playlist.name} to the queue\n**Site:** ${playlist.source}\n**Duration:** ${playlist.formattedDuration}\n**Requested by:** <@${playlist.member.id}>`)
         embed.setThumbnail(playlist.thumbnail)
-        embed.setColor(0xf777e8)
+        embed.setColor(0x00FF00)
         embed.setTimestamp(Date.now())
 
         if (queue.songs.length > 1) {

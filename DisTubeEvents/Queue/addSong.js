@@ -17,7 +17,7 @@ module.exports = {
         embed.setURL(song.url)
         embed.setDescription(`Added ${song.name} to the queue\n**Site:** ${song.source}\n**Duration:** ${song.formattedDuration}\n**Requested by:** <@${song.member.id}>`)
         embed.setThumbnail(song.thumbnail)
-        embed.setColor(0xf777e8)
+        embed.setColor(0x00FF00)
         embed.setTimestamp(Date.now())
 
         if (queue.songs.length > 1) {
