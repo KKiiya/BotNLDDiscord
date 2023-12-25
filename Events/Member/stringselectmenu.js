@@ -200,7 +200,6 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Resources Help")
                             .setDescription("Please wait for a staff member to help you!")
-                            .setThumbnail(interaction.client.user.avatarURL())
                             .setColor(0xFF0000)
                             .setFooter({
                                 text: "Ticket System",
@@ -238,7 +237,6 @@ module.exports = {
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Other")
                             .setDescription("Please wait for a staff member to help you!")
-                            .setThumbnail(interaction.client.user.avatarURL())
                             .setColor(0xFF0000)
                             .setFooter({
                                 text: "Ticket System",
