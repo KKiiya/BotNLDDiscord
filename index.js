@@ -7,7 +7,7 @@ const {SoundCloudPlugin} = require("@distube/soundcloud")
 const {YtDlpPlugin} = require("@distube/yt-dlp")
 
 const client = new Client({
-   intents: [Guilds, GuildMembers, GuildMessages],
+      intents: [Guilds, GuildMembers, GuildMessages, "GuildVoiceStates"],
    partials: [User, Message, GuildMember, ThreadMember]
 });
 
