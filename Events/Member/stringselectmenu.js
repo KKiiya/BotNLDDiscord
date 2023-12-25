@@ -164,6 +164,7 @@ module.exports = {
                 if (data.ticketsInfo[guild.id].ticketCount === undefined) data.ticketsInfo[guild.id].ticketCount = 0;
             } catch (error) {
                 console.log(data)
+                console.log(data.ticketsInfo[guild.id])
                 data.ticketsInfo[guild.id] = {
                     ticketsCategory: data.ticketsInfo[guild.id].ticketsCategory,
                     ticketsCreationChannel: data.ticketsInfo[guild.id].ticketsCreationChannel,
