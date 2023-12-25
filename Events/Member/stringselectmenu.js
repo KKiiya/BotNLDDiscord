@@ -153,21 +153,22 @@ module.exports = {
                     break;
             }
         } else if (id === "ticket-help-selection") {
-            const data = {
-                ticketsInfo: [
-                    interaction.guild.id, {
-                        ticketsCategory: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketsCategory,
-                        ticketsCreationChannel: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketsCreationChannel,
-                        ticketCount: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketCount + 1
-                    }]
-            };
+            const rawData = fs.readFileSync('data.json', (error, data) => {
+                if (error) throw error;
+                return data;
+            });
+
+            const data = JSON.parse(rawData);
+            if (!data.ticketsInfo[guild.id].ticketCount) data.ticketsInfo[guild.id].ticketCount = 0;
+            data.ticketsInfo[guild.id].ticketCount++;
             
-            fs.writeFileSync('data.json', JSON.stringify(data));
+            fs.writeFileSync('data.json', data);
+            
             switch (value) {
                 case "resources-help":
-                    guild.channels.create(`ticket-${fs.readFileSync('data.json').ticketsInfo[guild.id].ticketCount}`, {
+                    guild.channels.create(`ticket-${data.ticketsInfo[guild.id].ticketCount}`, {
                         type: 'text',
-                        parent: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketsCategory,
+                        parent: data.ticketsInfo[guild.id].ticketsCategory,
                         permissionOverwrites: [
                             {
                                 id: interaction.user.id,
@@ -180,14 +181,15 @@ module.exports = {
                         ]
                     }).then(channel => {
                         const embed = new EmbedBuilder()
-                            .setTitle("Ticket")
+                            .setTitle("Ticket - Resources Help")
                             .setDescription("Please wait for a staff member to help you!")
                             .setThumbnail(interaction.client.user.avatarURL())
                             .setColor(0xFF0000)
                             .setFooter({
                                 text: "Ticket System",
                                 iconURL: interaction.client.user.avatarURL()
-                            });
+                            })
+                            .setTimestamp(Date.now());
                         channel.send({
                             embeds: [embed]
                         })
@@ -199,9 +201,9 @@ module.exports = {
                     })
                     break;
                 case "other-help":
-                    guild.channels.create(`ticket-${fs.readFileSync('data.json').ticketsInfo[guild.id].ticketCount}`, {
+                    guild.channels.create(`ticket-${data.ticketsInfo[guild.id].ticketCount}`, {
                         type: 'text',
-                        parent: fs.readFileSync('data.json').ticketsInfo[guild.id].ticketsCategory,
+                        parent: data.ticketsInfo[guild.id].ticketsCategory,
                         permissionOverwrites: [
                             {
                                 id: interaction.user.id,
@@ -214,14 +216,15 @@ module.exports = {
                         ]
                     }).then(channel => {
                         const embed = new EmbedBuilder()
-                            .setTitle("Ticket")
+                            .setTitle("Ticket - Other")
                             .setDescription("Please wait for a staff member to help you!")
                             .setThumbnail(interaction.client.user.avatarURL())
                             .setColor(0xFF0000)
                             .setFooter({
                                 text: "Ticket System",
                                 iconURL: interaction.client.user.avatarURL()
-                            });
+                            })
+                            .setTimestamp(Date.now());
                         channel.send({
                             embeds: [embed]
                         })
