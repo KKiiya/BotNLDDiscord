@@ -171,12 +171,12 @@ module.exports = {
                     ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                     ticketCount: 0
                 }
-                fs.writeFileSync('data.json', data);
+                fs.writeFileSync('data.json', JSON.stringify(data));
             }
 
             data[guildId].ticketCount++;
             
-            fs.writeFileSync('data.json', data);
+            fs.writeFileSync('data.json', JSON.stringify(data));
             
             switch (value) {
                 case "resources-help":
