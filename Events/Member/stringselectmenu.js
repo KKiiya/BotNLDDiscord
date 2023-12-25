@@ -181,7 +181,8 @@ module.exports = {
             switch (value) {
                 case "resources-help":
                     let createdChannel2;
-                    guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
+                    guild.channels.create({
+                        name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
                         parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
@@ -218,7 +219,8 @@ module.exports = {
                     break;
                 case "other-help":
                     let createdChannel;
-                    guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
+                    guild.channels.create({
+                        name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
                         parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
