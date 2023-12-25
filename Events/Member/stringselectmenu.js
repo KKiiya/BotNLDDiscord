@@ -161,7 +161,7 @@ module.exports = {
             const data = JSON.parse(rawData);
             
             try {
-                data.ticketsInfo[guild.id].ticketCount;
+                if (data.ticketsInfo[guild.id].ticketCount === undefined) data.ticketsInfo[guild.id].ticketCount = 0;
             } catch (error) {
                 console.log(data)
                 data.ticketsInfo[guild.id] = {

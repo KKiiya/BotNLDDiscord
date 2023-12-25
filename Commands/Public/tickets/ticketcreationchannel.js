@@ -35,13 +35,13 @@ module.exports = {
         });
 
 
-        // Write data to data.json
+        const info = {
+            ticketsCategory: channelId,
+            ticketsCreationChannel: categoryId
+        };
+        
         const data = {
-            ticketsInfo: [
-                interaction.guild.id, {
-                    ticketsCategory: categoryId,
-                    ticketsCreationChannel: channelId,
-                }]
+            [guildId]: info
         };
         
         fs.writeFileSync('data.json', JSON.stringify(data));
