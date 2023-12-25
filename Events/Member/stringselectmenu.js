@@ -163,7 +163,7 @@ module.exports = {
             try {
                 data.ticketsInfo[guild.id].ticketCount;
             } catch (error) {
-                console.log(data.ticketsInfo[guild.id])
+                console.log(data)
                 data.ticketsInfo[guild.id] = {
                     ticketsCategory: data.ticketsInfo[guild.id].ticketsCategory,
                     ticketsCreationChannel: data.ticketsInfo[guild.id].ticketsCreationChannel,
