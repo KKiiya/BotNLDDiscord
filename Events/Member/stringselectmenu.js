@@ -180,6 +180,7 @@ module.exports = {
             
             switch (value) {
                 case "resources-help":
+                    console.log(`resources-help`)
                     guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
                         type: 'text',
                         parent: data[guildId].ticketsCategory,
@@ -194,6 +195,7 @@ module.exports = {
                             }
                         ]
                     }).then(channel => {
+                        console.log(`sending embed`)
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Resources Help")
                             .setDescription("Please wait for a staff member to help you!")
@@ -208,6 +210,7 @@ module.exports = {
                             embeds: [embed]
                         })
                     })
+                    console.log(`finished`)
 
                     interaction.reply({
                         content: "Ticket created!",
@@ -215,6 +218,7 @@ module.exports = {
                     })
                     break;
                 case "other-help":
+                    console.log(`other-help`)
                     guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
                         type: 'text',
                         parent: data[guildId].ticketsCategory,
@@ -229,6 +233,7 @@ module.exports = {
                             }
                         ]
                     }).then(channel => {
+                        console.log(`sending embed`)
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Other")
                             .setDescription("Please wait for a staff member to help you!")
@@ -243,6 +248,7 @@ module.exports = {
                             embeds: [embed]
                         })
                     })
+                    console.log(`finished`)
 
                     interaction.reply({
                         content: "Ticket created!",
