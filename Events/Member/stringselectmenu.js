@@ -184,7 +184,7 @@ module.exports = {
                     guild.channels.create({
                         name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
-                        parent: data[guildId].ticketsCategory,
+                        parent: guild.channels.cache.get(data[guildId].ticketsCategory),
                         permissionOverwrites: [
                             {
                                 id: interaction.user.id,
@@ -222,7 +222,7 @@ module.exports = {
                     guild.channels.create({
                         name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
-                        parent: data[guildId].ticketsCategory,
+                        parent: guild.channels.cache.get(data[guildId].ticketsCategory),
                         permissionOverwrites: [
                             {
                                 id: interaction.user.id,
