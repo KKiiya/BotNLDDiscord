@@ -1,10 +1,13 @@
+const { loadButtons } = require("../../Handlers/buttonHandler");
 const { loadCommands } = require("../../Handlers/commandHandler");
 module.exports = {
     name: 'ready',
     onde: true,
-    execute(client) {
+    async execute(client) { 
+        await loadCommands(client);
+        await loadButtons(client);
+
+
         console.log("The Client is now ready.");
-        
-        loadCommands(client);
     }
 }
