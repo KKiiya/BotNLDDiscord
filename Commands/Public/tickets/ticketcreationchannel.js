@@ -25,7 +25,8 @@ module.exports = {
         embed.addFields(
             {
                 name: "How to create a ticket?",
-                value: "Click on the selection menu below to select a ticket category!"
+                value: "Click on the selection menu below to select a ticket category!",
+                inline: false
             }
         )
         embed.setFooter({
