@@ -41,9 +41,7 @@ module.exports = {
         };
         
         const data = {
-            ticketsInfo : {
-                [guildId]: info
-            }
+            [guildId] : info
         };
         
         fs.writeFileSync('data.json', JSON.stringify(data));

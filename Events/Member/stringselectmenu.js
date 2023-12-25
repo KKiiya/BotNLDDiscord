@@ -162,27 +162,27 @@ module.exports = {
             const guildId = `${guild.id}`;
             
             try {
-                if (data.ticketsInfo[guildId].ticketCount === undefined) data.ticketsInfo[guildId].ticketCount = 0;
+                if (data[guildId].ticketCount === undefined) data[guildId].ticketCount = 0;
             } catch (error) {
                 console.log(data)
-                console.log(data.ticketsInfo[guildId])
-                data.ticketsInfo[guildId] = {
-                    ticketsCategory: data.ticketsInfo[guildId].ticketsCategory,
-                    ticketsCreationChannel: data.ticketsInfo[guildId].ticketsCreationChannel,
+                console.log(data[guildId])
+                data[guildId] = {
+                    ticketsCategory: data[guildId].ticketsCategory,
+                    ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                     ticketCount: 0
                 }
                 fs.writeFileSync('data.json', data);
             }
 
-            data.ticketsInfo[guildId].ticketCount++;
+            data[guildId].ticketCount++;
             
             fs.writeFileSync('data.json', data);
             
             switch (value) {
                 case "resources-help":
-                    guild.channels.create(`ticket-${data.ticketsInfo[guildId].ticketCount}`, {
+                    guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
                         type: 'text',
-                        parent: data.ticketsInfo[guildId].ticketsCategory,
+                        parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
                             {
                                 id: interaction.user.id,
@@ -215,9 +215,9 @@ module.exports = {
                     })
                     break;
                 case "other-help":
-                    guild.channels.create(`ticket-${data.ticketsInfo[guildId].ticketCount}`, {
+                    guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
                         type: 'text',
-                        parent: data.ticketsInfo[guildId].ticketsCategory,
+                        parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
                             {
                                 id: interaction.user.id,
