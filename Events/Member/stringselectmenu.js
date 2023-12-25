@@ -1,4 +1,4 @@
-const { Client, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder } = require("discord.js");
+const { Client, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType } = require("discord.js");
 const fs = require("fs");
 
 module.exports = {
@@ -182,7 +182,7 @@ module.exports = {
                 case "resources-help":
                     console.log(`resources-help`)
                     guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
-                        type: 'text',
+                        type: ChannelType.GUILD_TEXT,
                         parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
                             {
@@ -220,7 +220,7 @@ module.exports = {
                 case "other-help":
                     console.log(`other-help`)
                     guild.channels.create(`ticket-${data[guildId].ticketCount}`, {
-                        type: 'text',
+                        type: ChannelType.GUILD_TEXT,
                         parent: data[guildId].ticketsCategory,
                         permissionOverwrites: [
                             {
