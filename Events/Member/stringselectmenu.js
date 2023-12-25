@@ -161,7 +161,7 @@ module.exports = {
             const data = JSON.parse(rawData);
             
             try {
-                if (!data.ticketsInfo[guild.id].ticketCount) data.ticketsInfo[guild.id].ticketCount = 0;
+                data.ticketsInfo[guild.id].ticketCount;
             } catch (error) {
                 data.ticketsInfo[guild.id] = {
                     ticketsCategory: data.ticketsInfo[guild.id].ticketsCategory,
