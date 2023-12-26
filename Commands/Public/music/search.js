@@ -71,8 +71,8 @@ module.exports = {
 
                     for (i = 0; i < 10; i++) {
                         embed.addFields({
-                        name: `Result #${i}`,
-                        value: `Title: ${results.items[i].name}, Channel: ${results.items[i].author.name}, Duration: ${results.items[i].formattedDuration}, Source: ${results.items[i].source}, Views: ${results.items[i].views}`,
+                        name: `Result #${i+1}`,
+                        value: `:white_circle: **Title:** ${results.items[i].name}\n:red_square: **Channel:** ${results.items[i].author.name}\n:clock11: **Duration:** ${results.items[i].formattedDuration}\n:globe_with_meridians: **Source:** ${results.items[i].source}\n:eye: **Views:** ${results.items[i].views}`,
                         inline: false
                         })
                     }
@@ -121,8 +121,8 @@ module.exports = {
 
                     for (i = 0; i < 10; i++) {
                         embed.addFields({
-                        name: `Result #${i}`,
-                        value: `Title: ${results.items[i].name}, Channel: ${results.items[i].author.name}, Duration: ${results.items[i].formattedDuration}, Source: ${results.items[i].source}, Views: ${results.items[i].views}`,
+                        name: `Result #${i+1}`,
+                        value: `:white_circle: **Title:** ${results.items[i].name}\n:red_square: **Channel:** ${results.items[i].author.name}\n:clock11: **Duration:** ${results.items[i].formattedDuration}\n:globe_with_meridians: **Source:** ${results.items[i].source}\n:eye: **Views:** ${results.items[i].views}`,
                         inline: false
                         })
                     }
