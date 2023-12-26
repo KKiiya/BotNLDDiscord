@@ -1,4 +1,4 @@
-const { Client, EmbedBuilder } = require("discord.js");
+const { Client, EmbedBuilder, ActionRowBuilder, ButtonStyle, ButtonBuilder } = require("discord.js");
 const client = require("../../index");
 const { Queue } = require("distube");
 
@@ -11,6 +11,43 @@ module.exports = {
      * @param {Song} song
      */
     execute(queue, song) {
+      const previous = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`previous`)
+            .setLabel("⏮")
+            .setStyle(ButtonStyle.Primary));
+      const secsBack = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`seek`)
+            .setLabel("⏪")
+            .setStyle(ButtonStyle.Primary));
+      const stop = new ActionRowBuilder().addComponents(
+          new ButtonBuilder()
+              .setCustomId(`stop`)
+              .setLabel("⏹")
+              .setStyle(ButtonStyle.Danger));
+      const pause = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`pause`)
+            .setLabel("⏸")
+            .setStyle(ButtonStyle.Secondary));
+      const resume = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`resume`)
+            .setLabel("▶")
+            .setStyle(ButtonStyle.Secondary));
+      const secsForward = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`forward`)
+            .setLabel("⏩")
+            .setStyle(ButtonStyle.Secondary));
+      const skip = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`skip`)
+            .setLabel("⏭")
+            .setStyle(ButtonStyle.Primary));
+      
+      
       const embed = new EmbedBuilder();
 
       embed.setTitle(song.name)
@@ -21,7 +58,8 @@ module.exports = {
       embed.setTimestamp(Date.now())
          
       queue.textChannel.send({
-        embeds: [embed]
+        embeds: [embed],
+        components: [previous, secsBack, stop, pause, resume, secsForward, skip]
       })
     }
 }
