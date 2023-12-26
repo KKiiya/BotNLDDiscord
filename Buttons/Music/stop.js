@@ -39,6 +39,7 @@ module.exports = {
                 interaction.reply({ content: "You are not in my vc!", ephemeral: true })
                 return;
             }
+            queue.stop()
             interaction.reply({ embeds: [embed], ephemeral: false })
         } else {
             interaction.reply({ content: "You are not in a voice chat!", ephemeral: true });

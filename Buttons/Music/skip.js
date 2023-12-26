@@ -40,13 +40,13 @@ module.exports = {
                 embed.setColor(0x00FF00)
                 embed.setTitle("Song Skipped!")
                 embed.setDescription(`Skipped to the next song\n**Requested by:** <@${interaction.member.id}>!`)
-                queue.jump(1)
+                queue.skip()
                 interaction.reply({embeds: [embed], ephemeral: false })
             } else if (queue.songs.length == 1) {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")
                 embed.setDescription(`There is nothing else to play!`)
-                interaction.reply({embeds: [embed], ephemeral: false })
+                interaction.reply({embeds: [embed], ephemeral: true })
             }
             
         } else {
