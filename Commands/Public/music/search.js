@@ -42,11 +42,11 @@ module.exports = {
                         const embed = new EmbedBuilder();
                         embed.setTitle("Search Result")
                         embed.setDescription(`Search result for **${results.query}**`)
-                        embed.setThumbnail(message.client.user.avatarURL())
+                        embed.setThumbnail(interaction.client.user.avatarURL())
                         embed.setAuthor({
-                            name: `Search Done by ${message.author.displayName}`,
+                            name: `Search Done by ${interaction.author.displayName}`,
                             url: interaction.user.avatarURL(),
-                            iconURL: message.author.avatarURL()
+                            iconURL: interaction.user.avatarURL()
                         })
                         embed.setTimestamp(Date.now())
                         embed.setColor(0xFF0000)
@@ -60,11 +60,11 @@ module.exports = {
                     const embed = new EmbedBuilder();
                     embed.setTitle("Search Result")
                     embed.setDescription(`Search result for **${results.query}**`)
-                    embed.setThumbnail(message.client.user.avatarURL())
+                    embed.setThumbnail(interaction.client.user.avatarURL())
                     embed.setAuthor({
-                        name: `Search Done by ${message.author.displayName}`,
+                        name: `Search Done by ${interaction.user.displayName}`,
                         url: interaction.user.avatarURL(),
-                        iconURL: message.author.avatarURL()
+                        iconURL: interaction.user.avatarURL()
                     })
                     embed.setTimestamp(Date.now())
                     embed.setColor(0x00FF00)
@@ -91,11 +91,11 @@ module.exports = {
                         const embed = new EmbedBuilder();
                         embed.setTitle("Search Result")
                         embed.setDescription(`Search result for **${results.query}**`)
-                        embed.setThumbnail(message.client.user.avatarURL())
+                        embed.setThumbnail(interaction.client.user.avatarURL())
                         embed.setAuthor({
-                            name: `Search Done by ${message.author.displayName}`,
+                            name: `Search Done by ${interaction.user.displayName}`,
                             url: interaction.user.avatarURL(),
-                            iconURL: message.author.avatarURL()
+                            iconURL: interaction.user.avatarURL()
                         })
                         embed.setTimestamp(Date.now())
                         embed.setColor(0xFF0000)
@@ -110,11 +110,11 @@ module.exports = {
                     const embed = new EmbedBuilder();
                     embed.setTitle("Search Result")
                     embed.setDescription(`Search result for **${results.query}**`)
-                    embed.setThumbnail(message.client.user.avatarURL())
+                    embed.setThumbnail(interaction.client.user.avatarURL())
                     embed.setAuthor({
-                        name: `Search Done by ${message.author.displayName}`,
+                        name: `Search Done by ${interaction.user.displayName}`,
                         url: interaction.user.avatarURL(),
-                        iconURL: message.author.avatarURL()
+                        iconURL: interaction.user.avatarURL()
                     })
                     embed.setTimestamp(Date.now())
                     embed.setColor(0x00FF00)
