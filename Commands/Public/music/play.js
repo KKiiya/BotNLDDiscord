@@ -21,13 +21,10 @@ module.exports = {
       
       if (executor.voice.channel != null) {
         try {
-          interaction.fetchReply();
+          interaction.reply({content: "Request received!", ephemeral: true})
           await client.distube.play(vc.channel, url, { textChannel: interaction.channel, member: executor});
         } catch (err) {
-          interaction.reply({
-            content: "Something went wrong! This might be because the site is not supported or the site has protection to not play its songs, apologies!",
-            ephemeral: true
-          });
+          interaction.channel.send({content: "Something went wrong! This might be because the site is not supported or the site has protection to not play its songs, apologies!"});
         }
       } else {
         interaction.reply({content: "You are not in a voice chat!", ephemeral: true});
