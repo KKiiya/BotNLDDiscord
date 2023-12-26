@@ -88,7 +88,7 @@ module.exports = {
 
                         const option = new StringSelectMenuOptionBuilder();
 
-                        option.setLabel(`${results.items[i].name}`)
+                        option.setLabel(`${(results.items[i].name).substring(0, 100)}`)
                         option.setDescription(`Result #${i+1}`)
                         option.setValue(`${results.items[i].url}`)
 
@@ -157,7 +157,7 @@ module.exports = {
 
                         const option = new StringSelectMenuOptionBuilder();
 
-                        option.setLabel(`${results.items[i].name}`)
+                        option.setLabel(`${(results.items[i].name).substring(0, 100)}`)
                         option.setDescription(`Result #${i+1}`)
                         option.setValue(`${results.items[i].url}`)
 
