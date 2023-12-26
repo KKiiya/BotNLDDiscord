@@ -59,7 +59,7 @@ module.exports = {
          
       queue.textChannel.send({
         embeds: [embed],
-        components: [previous, secsBack, stop, pause, resume, secsForward, skip]
+        components: [previous, secsBack, stop, secsForward, skip]
       })
     }
 }
