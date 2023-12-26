@@ -59,7 +59,7 @@ module.exports = {
                     }
                     const embed = new EmbedBuilder();
                     embed.setTitle("Search Result")
-                    embed.setDescription(`Search result for **${query}**`)
+                    embed.setDescription(`Search result for **${results.query}**`)
                     embed.setThumbnail(message.client.user.avatarURL())
                     embed.setAuthor({
                         name: `Search Done by ${message.author.displayName}`,
@@ -87,7 +87,6 @@ module.exports = {
                     type: SearchResultType.PLAYLIST,
                     safeSearch: false
                 }).then((results) => {
-                    console.log(results);
                     if (results.items.length <= 0) {
                         const embed = new EmbedBuilder();
                         embed.setTitle("Search Result")
