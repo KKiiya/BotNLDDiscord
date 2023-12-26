@@ -38,7 +38,7 @@ module.exports = {
             }
 
             try {
-                queue.previous();
+                await queue.previous();
                 interaction.reply({content: "Playing previous song!", ephemeral: true})
             } catch (error) {
                 embed.setColor(0xff0008)
