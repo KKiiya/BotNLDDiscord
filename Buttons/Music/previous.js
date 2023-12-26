@@ -36,9 +36,11 @@ module.exports = {
                 interaction.reply({content: "You are not in my vc!", ephemeral: true })
                 return;
             }
-            if (queue.previous()) {
+
+            try {
+                queue.previous();
                 interaction.reply({content: "Playing previous song!", ephemeral: true})
-            } else {
+            } catch (error) {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")
                 embed.setDescription(`There is no previous song to play!`)

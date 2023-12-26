@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
+const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
 const client = require("../../../index");
 const ytsr = require("@distube/ytsr");
 const { SearchResultType } = require('distube');
@@ -27,6 +27,7 @@ module.exports = {
      */
     execute(interaction) {
         const distube = client.distube;
+        const queue = distube.getQueue(interaction.guild);
         const subCommand = interaction.options.getSubcommand()
         const prompt = interaction.options.getString("prompt");
 
@@ -78,7 +79,23 @@ module.exports = {
                         })
                     }
 
-                    interaction.reply({embeds: [embed]})
+                    const select = new StringSelectMenuBuilder()
+                        .setCustomId('search')
+                        .setPlaceholder('Select the song you want to play!');
+                    
+                    for (i = 0; i < 10; i++) {
+                        if (results.items[i] === undefined) continue;
+
+                        const option = new StringSelectMenuOptionBuilder();
+
+                        option.setLabel(`${results.items[i].name}`)
+                        option.setDescription(`Result #${i+1}`)
+                        option.setValue(`${results.items[i].url}`)
+
+                        select.addOptions(option)
+                    }
+
+                    interaction.reply({embeds: [embed], components: [select]})
                 }).catch((err) => {
                     console.log(err);
                 });
@@ -129,7 +146,23 @@ module.exports = {
                         })
                     }
 
-                    interaction.reply({embeds: [embed]})
+                    const select = new StringSelectMenuBuilder()
+                        .setCustomId('search')
+                        .setPlaceholder('Select the song you want to play!');
+                    
+                    for (i = 0; i < 10; i++) {
+                        if (results.items[i] === undefined) continue;
+
+                        const option = new StringSelectMenuOptionBuilder();
+
+                        option.setLabel(`${results.items[i].name}`)
+                        option.setDescription(`Result #${i+1}`)
+                        option.setValue(`${results.items[i].url}`)
+
+                        select.addOptions(option)
+                    }
+
+                    interaction.reply({embeds: [embed], components: [select]})
                 }).catch((err) => {
                     console.log(err);
                 });

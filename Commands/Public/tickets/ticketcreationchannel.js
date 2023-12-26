@@ -49,7 +49,7 @@ module.exports = {
         // Create a message with string select menu
         const select = new StringSelectMenuBuilder()
 			.setCustomId('ticket-help-selection')
-			.setPlaceholder('Select the command section you want to get! *This is not available yet, sorry!*')
+			.setPlaceholder('Select the help section you want to get!')
 			.addOptions(
 				new StringSelectMenuOptionBuilder()
 					.setLabel('Resources Help')

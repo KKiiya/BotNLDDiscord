@@ -1,5 +1,6 @@
 const { Client, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, BitField, PermissionsBitField } = require("discord.js");
 const fs = require("fs");
+const client = require("../..");
 
 module.exports = {
     name: 'interactionCreate',
@@ -254,6 +255,21 @@ module.exports = {
                     })
                     break;
             }
+        } else if (id === "search") {
+            const distube = client.distube;
+            const executor = interaction.member;
+            const vc = executor.voice;
+
+            if (executor.voice.channel != null) {
+                try {
+                  interaction.reply({content: "Request received!", ephemeral: true})
+                  await distube.play(vc.channel, value, { textChannel: interaction.channel, member: executor});
+                } catch (err) {
+                  interaction.channel.send({content: "Couldn't play this track!"});
+                }
+              } else {
+                interaction.reply({content: "You are not in a voice chat!", ephemeral: true});
+              }
         }
     }
 }

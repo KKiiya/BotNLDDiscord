@@ -45,7 +45,7 @@ module.exports = {
                     return;
                 }
                 queue.seek(queue.currentTime + 10)
-                interaction.deferReply({ephemeral: true})
+                interaction.reply({content: "Seeked 10 seconds forward!", ephemeral: true})
             } else {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")
