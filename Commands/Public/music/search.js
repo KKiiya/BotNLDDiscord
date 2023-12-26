@@ -1,5 +1,6 @@
 const { ChatInputCommandInteraction, SlashCommandBuilder } = require('discord.js');
 const client = require("../../../index");
+const ytsr = require("@distube/ytsr");
 const { SearchResultType } = require('distube');
 
 module.exports = {
@@ -33,13 +34,13 @@ module.exports = {
 
         switch (subCommand) {
             case "video":
-                distube.search(prompt, {
+                ytsr(prompt, {
                     type: SearchResultType.VIDEO,
                     safeSearch: false
                 });
                 break;
             case "playlist":
-                distube.search(prompt, {
+                ytsr(prompt, {
                     type: SearchResultType.PLAYLIST,
                     safeSearch: false
                 });
