@@ -36,7 +36,7 @@ module.exports = {
                 interaction.reply({content: "You are not in my vc!", ephemeral: true })
                 return;
             }
-            if (queue.playing == false) {
+            if (queue.playing == true) {
                 if (queue.currentTime + 10 > queue.songs[0].duration) {
                     embed.setColor(0xff0008)
                     embed.setTitle("Error!")
@@ -48,7 +48,7 @@ module.exports = {
             } else {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")
-                embed.setDescription(`The song is already playing!`)
+                embed.setDescription(`No song is playing!`)
                 interaction.reply({embeds: [embed], ephemeral: true})
             }
             

@@ -36,13 +36,13 @@ module.exports = {
                 interaction.reply({content: "You are not in my vc!", ephemeral: true })
                 return;
             }
-            if (queue.songs.length > 1) {
-                queue.seek(queue.currentTime + 10)
-            } else if (queue.songs.length <= 1) {
+            if (queue.playing == true) {
+                queue.seek(queue.currentTime - 10)
+            } else {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")
-                embed.setDescription(`There is nothing else to play!`)
-                interaction.reply({embeds: [embed], ephemeral: false })
+                embed.setDescription(`No song is playing!`)
+                interaction.reply({embeds: [embed], ephemeral: true })
             }
             
         } else {

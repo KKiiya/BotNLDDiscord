@@ -37,10 +37,10 @@ module.exports = {
                 return;
             }
             if (queue.songs.length > 1) {
+                queue.skip()
                 embed.setColor(0x00FF00)
                 embed.setTitle("Song Skipped!")
                 embed.setDescription(`Skipped to the next song\n**Requested by:** <@${interaction.member.id}>!`)
-                queue.skip()
                 interaction.reply({embeds: [embed], ephemeral: false })
             } else if (queue.songs.length == 1) {
                 embed.setColor(0xff0008)
