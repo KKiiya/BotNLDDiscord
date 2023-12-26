@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
+const { ActionRowBuilder, ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder } = require('discord.js');
 const client = require("../../../index");
 const ytsr = require("@distube/ytsr");
 const { SearchResultType } = require('distube');
@@ -95,7 +95,9 @@ module.exports = {
                         select.addOptions(option)
                     }
 
-                    interaction.reply({embeds: [embed], components: [select]})
+                    const component = new ActionRowBuilder().addComponents(select);
+
+                    interaction.reply({embeds: [embed], components: [component]})
                 }).catch((err) => {
                     console.log(err);
                 });
@@ -162,7 +164,9 @@ module.exports = {
                         select.addOptions(option)
                     }
 
-                    interaction.reply({embeds: [embed], components: [select]})
+                    const component = new ActionRowBuilder().addComponents(select);
+
+                    interaction.reply({embeds: [embed], components: [component]})
                 }).catch((err) => {
                     console.log(err);
                 });
