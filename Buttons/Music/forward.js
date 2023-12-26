@@ -37,7 +37,14 @@ module.exports = {
                 return;
             }
             if (queue.playing == true) {
-                queue.seek(queue.currentTime - 10)
+                if (queue.currentTime + 10 > queue.songs[0].duration) {
+                    embed.setColor(0xff0008)
+                    embed.setTitle("Error!")
+                    embed.setDescription(`Cannot seek past the song's duration`)
+                    interaction.reply({embeds: [embed], ephemeral: true})
+                    return;
+                }
+                queue.seek(queue.currentTime + 10)
             } else {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")
