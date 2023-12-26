@@ -30,7 +30,7 @@ module.exports = {
         const subCommand = interaction.options.getSubcommand()
         const prompt = interaction.options.getString("prompt");
 
-        interaction.reply({content: "Request recieved!", ephemeral: true})
+        interaction.fetchReply();
 
         switch (subCommand) {
             case "video":
@@ -77,7 +77,7 @@ module.exports = {
                         })
                     }
 
-                    interaction.channel.send({embeds: [embed]})
+                    interaction.reply({embeds: [embed]})
                 }).catch((err) => {
                     console.log(err);
                 });
@@ -127,7 +127,7 @@ module.exports = {
                         })
                     }
 
-                    interaction.channel.send({embeds: [embed]})
+                    interaction.reply({embeds: [embed]})
                 }).catch((err) => {
                     console.log(err);
                 });
