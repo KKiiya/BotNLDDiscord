@@ -30,17 +30,39 @@ module.exports = {
         embed.setThumbnail(queue.songs[0].thumbnail)
         embed.setColor("Random")
 
-        const nextPageButton = new ActionRowBuilder().addComponents(
+        const manageButtons = new ActionRowBuilder().addComponents(
             new ButtonBuilder()
-                .setCustomId("nextQueuePage")
-                .setLabel("Next Page ➡")
-                .setStyle(ButtonStyle.Secondary));
+                .setCustomId(`previous`)
+                .setLabel("⏮")
+                .setStyle(ButtonStyle.Primary),
+            new ButtonBuilder()
+              .setCustomId(`seek`)
+              .setLabel("⏪")
+              .setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder()
+              .setCustomId(`stop`)
+              .setLabel("⏹")
+              .setStyle(ButtonStyle.Danger),
+            new ButtonBuilder()
+              .setCustomId(`forward`)
+              .setLabel("⏩")
+              .setStyle(ButtonStyle.Secondary),
+            new ButtonBuilder()
+              .setCustomId(`skip`)
+              .setLabel("⏭")
+              .setStyle(ButtonStyle.Primary));
 
-        const previousPageButton = new ActionRowBuilder().addComponents(
-            new ButtonBuilder()
-                .setCustomId("previousQueuePage")
-                .setLabel("⬅ Previous Page")
-                .setStyle(ButtonStyle.Secondary));
+        const nextPageButton = new ButtonBuilder()
+            .setCustomId("nextQueuePage")
+            .setLabel("Next Page ➡")
+            .setStyle(ButtonStyle.Secondary);
+        const previousPageButton = new ButtonBuilder()
+            .setCustomId("previousQueuePage")
+            .setLabel("⬅ Previous Page")
+            .setStyle(ButtonStyle.Secondary);
+
+        const pageButtons = new ActionRowBuilder();
+            
         
         let condition = false;
         var currentPage = parseInt(interaction.message.embeds[0].footer.text.replace("Page:", "").split("/")[0])
@@ -73,21 +95,24 @@ module.exports = {
         embed.setFooter({text: `Page: ${currentPage}/${pages}`})
 
         if (currentPage >= pages) {
+            pageButtons.addComponents(previousPageButton)
             interaction.update({
                 embeds: [embed],
-                components: [previousPageButton],
+                components: [manageButtons, previousPageButton],
                 ephemeral: false
             })
         } else if (currentPage == 1) {
+            pageButtons.addComponents(nextPageButton)
             interaction.update({
                 embeds: [embed],
-                components: [nextPageButton],
+                components: [manageButtons, pageButtons],
                 ephemeral: false
             })
         } else {
+            pageButtons.addComponents(previousPageButton, nextPageButton)
             interaction.update({
                 embeds: [embed],
-                components: [previousPageButton, nextPageButton],
+                components: [manageButtons, pageButtons],
                 ephemeral: false
             })
         }

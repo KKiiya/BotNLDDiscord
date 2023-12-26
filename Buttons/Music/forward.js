@@ -45,6 +45,7 @@ module.exports = {
                     return;
                 }
                 queue.seek(queue.currentTime + 10)
+                interaction.deferReply({ephemeral: true})
             } else {
                 embed.setColor(0xff0008)
                 embed.setTitle("Error!")

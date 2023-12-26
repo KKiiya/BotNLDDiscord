@@ -3,7 +3,7 @@ const { EmbedBuilder, ButtonInteraction } = require("discord.js");
 
 module.exports = {
     data : {
-        name: "pause"
+        name: "previous"
     },
     /**
      * 

@@ -41,6 +41,28 @@ module.exports = {
           .setCustomId("nextQueuePage")
           .setLabel("Next Page ➡")
           .setStyle(ButtonStyle.Secondary));
+    
+    const manageButtons = new ActionRowBuilder().addComponents(
+        new ButtonBuilder()
+            .setCustomId(`previous`)
+            .setLabel("⏮")
+            .setStyle(ButtonStyle.Primary),
+        new ButtonBuilder()
+          .setCustomId(`seek`)
+          .setLabel("⏪")
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId(`stop`)
+          .setLabel("⏹")
+          .setStyle(ButtonStyle.Danger),
+        new ButtonBuilder()
+          .setCustomId(`forward`)
+          .setLabel("⏩")
+          .setStyle(ButtonStyle.Secondary),
+        new ButtonBuilder()
+          .setCustomId(`skip`)
+          .setLabel("⏭")
+          .setStyle(ButtonStyle.Primary));
 
     for (i = 1; i < queue.songs.length; i++) {
       if (i%10 == 0) {
@@ -70,13 +92,14 @@ module.exports = {
         embeds: [embed],
         ephemeral: false,
         fetchReply: true,
-        components: [nextPageButton]
+        components: [manageButtons, nextPageButton]
       })
     } else {
       interaction.reply({
         embeds: [embed],
         ephemeral: false, 
         fetchReply: true,
+        components: [manageButtons]
       })
     }
   }
