@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder } = require('discord.js');
+const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder } = require('discord.js');
 const client = require("../../../index");
 const ytsr = require("@distube/ytsr");
 const { SearchResultType } = require('distube');
@@ -37,12 +37,98 @@ module.exports = {
                 ytsr(prompt, {
                     type: SearchResultType.VIDEO,
                     safeSearch: false
+                }).then((results) => {
+                    if (results.items.length <= 0) {
+                        const embed = new EmbedBuilder();
+                        embed.setTitle("Search Result")
+                        embed.setDescription(`Search result for **${results.query}**`)
+                        embed.setThumbnail(message.client.user.avatarURL())
+                        embed.setAuthor({
+                            name: `Search Done by ${message.author.displayName}`,
+                            url: interaction.user.avatarURL(),
+                            iconURL: message.author.avatarURL()
+                        })
+                        embed.setTimestamp(Date.now())
+                        embed.setColor(0xFF0000)
+                        embed.addFields({
+                            name: `Result #0`,
+                            value: `No results found!`,
+                            inline: false
+                        })
+                        return;
+                    }
+                    const embed = new EmbedBuilder();
+                    embed.setTitle("Search Result")
+                    embed.setDescription(`Search result for **${query}**`)
+                    embed.setThumbnail(message.client.user.avatarURL())
+                    embed.setAuthor({
+                        name: `Search Done by ${message.author.displayName}`,
+                        url: interaction.user.avatarURL(),
+                        iconURL: message.author.avatarURL()
+                    })
+                    embed.setTimestamp(Date.now())
+                    embed.setColor(0x00FF00)
+
+                    for (i = 0; i < 10; i++) {
+                        embed.addFields({
+                        name: `Result #${i}`,
+                        value: `Title: ${results.items[i].name}, Channel: ${results.items[i].author.name}, Duration: ${results.items[i].formattedDuration}, Source: ${results.items[i].source}, Views: ${results.items[i].views}`,
+                        inline: false
+                        })
+                    }
+
+                    interaction.channel.send({embeds: [embed]})
+                }).catch((err) => {
+                    console.log(err);
                 });
                 break;
             case "playlist":
                 ytsr(prompt, {
                     type: SearchResultType.PLAYLIST,
                     safeSearch: false
+                }).then((results) => {
+                    if (results.items.length <= 0) {
+                        const embed = new EmbedBuilder();
+                        embed.setTitle("Search Result")
+                        embed.setDescription(`Search result for **${results.query}**`)
+                        embed.setThumbnail(message.client.user.avatarURL())
+                        embed.setAuthor({
+                            name: `Search Done by ${message.author.displayName}`,
+                            url: interaction.user.avatarURL(),
+                            iconURL: message.author.avatarURL()
+                        })
+                        embed.setTimestamp(Date.now())
+                        embed.setColor(0xFF0000)
+                        embed.addFields({
+                            name: `Result #0`,
+                            value: `No results found!`,
+                            inline: false
+                        })
+                        return;
+                    }
+                    const embed = new EmbedBuilder();
+                    embed.setTitle("Search Result")
+                    embed.setDescription(`Search result for **${results.query}**`)
+                    embed.setThumbnail(message.client.user.avatarURL())
+                    embed.setAuthor({
+                        name: `Search Done by ${message.author.displayName}`,
+                        url: interaction.user.avatarURL(),
+                        iconURL: message.author.avatarURL()
+                    })
+                    embed.setTimestamp(Date.now())
+                    embed.setColor(0x00FF00)
+
+                    for (i = 0; i < 10; i++) {
+                        embed.addFields({
+                        name: `Result #${i}`,
+                        value: `Title: ${results.items[i].name}, Channel: ${results.items[i].author.name}, Duration: ${results.items[i].formattedDuration}, Source: ${results.items[i].source}, Views: ${results.items[i].views}`,
+                        inline: false
+                        })
+                    }
+
+                    interaction.channel.send({embeds: [embed]})
+                }).catch((err) => {
+                    console.log(err);
                 });
                 break;    
         }

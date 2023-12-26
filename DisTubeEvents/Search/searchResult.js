@@ -13,8 +13,6 @@ module.exports = {
     execute(message, results, query) {
         const embed = new EmbedBuilder();
 
-        console.log(message)
-
         embed.setTitle("Search Result")
         embed.setDescription(`Search result for **${query}**`)
         embed.setThumbnail(message.client.user.avatarURL())
