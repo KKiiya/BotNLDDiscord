@@ -87,6 +87,7 @@ module.exports = {
                     type: SearchResultType.PLAYLIST,
                     safeSearch: false
                 }).then((results) => {
+                    console.log(results);
                     if (results.items.length <= 0) {
                         const embed = new EmbedBuilder();
                         embed.setTitle("Search Result")
@@ -106,6 +107,7 @@ module.exports = {
                         })
                         return;
                     }
+
                     const embed = new EmbedBuilder();
                     embed.setTitle("Search Result")
                     embed.setDescription(`Search result for **${results.query}**`)
