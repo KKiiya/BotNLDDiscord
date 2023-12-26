@@ -70,10 +70,11 @@ module.exports = {
                     embed.setColor(0x00FF00)
 
                     for (i = 0; i < 10; i++) {
+                        if (results.items[i] === undefined) continue;
                         embed.addFields({
-                        name: `Result #${i+1}`,
-                        value: `:globe_with_meridians: **URL:** ${results.items[i].url}\n:white_circle: **Title:** ${results.items[i].name}\n:red_square: **Channel:** ${results.items[i].author.name}\n:clock11: **Duration:** ${results.items[i].duration}\n:eye: **Views:** ${results.items[i].views}\n:calendar_spiral: **Upload Date:** ${results.items[i].uploadedAt}`,
-                        inline: false
+                            name: `Result #${i+1}`,
+                            value: `:globe_with_meridians: **URL:** ${results.items[i].url}\n:white_circle: **Title:** ${results.items[i].name}\n:red_square: **Channel:** ${results.items[i].author.name}\n:clock11: **Duration:** ${results.items[i].duration}\n:eye: **Views:** ${results.items[i].views}\n:calendar_spiral: **Upload Date:** ${results.items[i].uploadedAt}`,
+                            inline: false
                         })
                     }
 
@@ -120,10 +121,11 @@ module.exports = {
                     embed.setColor(0x00FF00)
 
                     for (i = 0; i < 10; i++) {
+                        if (results.items[i] === undefined) continue;
                         embed.addFields({
-                        name: `Result #${i+1}`,
-                        value: `:globe_with_meridians: **URL:** ${results.items[i].url}\n:white_circle: **Title:** ${results.items[i].name}\n:red_square: **Channel:** ${results.items[i].author.name}\n:clock11: **Duration:** ${results.items[i].duration}\n:eye: **Views:** ${results.items[i].views}\n:calendar_spiral: **Upload Date:** ${results.items[i].uploadedAt}`,
-                        inline: false
+                            name: `Result #${i+1}`,
+                            value: `:globe_with_meridians: **URL:** ${results.items[i].url}\n:white_circle: **Title:** ${results.items[i].name}\n:red_square: **Channel:** ${results.items[i].author.name}\n:clock11: **Duration:** ${results.items[i].duration}\n:eye: **Views:** ${results.items[i].views}\n:calendar_spiral: **Upload Date:** ${results.items[i].uploadedAt}`,
+                            inline: false
                         })
                     }
 
