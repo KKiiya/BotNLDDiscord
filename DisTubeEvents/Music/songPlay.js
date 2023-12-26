@@ -11,41 +11,27 @@ module.exports = {
      * @param {Song} song
      */
     execute(queue, song) {
-      const previous = new ActionRowBuilder().addComponents(
+      const manageButtons = new ActionRowBuilder().addComponents(
         new ButtonBuilder()
             .setCustomId(`previous`)
             .setLabel("⏮")
-            .setStyle(ButtonStyle.Primary));
-      const secsBack = new ActionRowBuilder().addComponents(
+            .setStyle(ButtonStyle.Primary),
         new ButtonBuilder()
-            .setCustomId(`seek`)
-            .setLabel("⏪")
-            .setStyle(ButtonStyle.Primary));
-      const stop = new ActionRowBuilder().addComponents(
-          new ButtonBuilder()
-              .setCustomId(`stop`)
-              .setLabel("⏹")
-              .setStyle(ButtonStyle.Danger));
-      const pause = new ActionRowBuilder().addComponents(
+          .setCustomId(`seek`)
+          .setLabel("⏪")
+          .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
-            .setCustomId(`pause`)
-            .setLabel("⏸")
-            .setStyle(ButtonStyle.Secondary));
-      const resume = new ActionRowBuilder().addComponents(
+          .setCustomId(`stop`)
+          .setLabel("⏹")
+          .setStyle(ButtonStyle.Danger),
         new ButtonBuilder()
-            .setCustomId(`resume`)
-            .setLabel("▶")
-            .setStyle(ButtonStyle.Secondary));
-      const secsForward = new ActionRowBuilder().addComponents(
+          .setCustomId(`forward`)
+          .setLabel("⏩")
+          .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
-            .setCustomId(`forward`)
-            .setLabel("⏩")
-            .setStyle(ButtonStyle.Secondary));
-      const skip = new ActionRowBuilder().addComponents(
-        new ButtonBuilder()
-            .setCustomId(`skip`)
-            .setLabel("⏭")
-            .setStyle(ButtonStyle.Primary));
+          .setCustomId(`skip`)
+          .setLabel("⏭")
+          .setStyle(ButtonStyle.Primary));
       
       
       const embed = new EmbedBuilder();
@@ -59,7 +45,7 @@ module.exports = {
          
       queue.textChannel.send({
         embeds: [embed],
-        components: [previous, secsBack, stop, secsForward, skip]
+        components: [manageButtons]
       })
     }
 }
