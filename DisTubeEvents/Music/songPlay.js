@@ -21,17 +21,9 @@ module.exports = {
           .setLabel("⏪")
           .setStyle(ButtonStyle.Secondary),
         new ButtonBuilder()
-          .setCustomId(`pause`)
-          .setLabel("⏸")
-          .setStyle(ButtonStyle.Primary),  
-        new ButtonBuilder()
           .setCustomId(`stop`)
           .setLabel("⏹")
           .setStyle(ButtonStyle.Danger),
-        new ButtonBuilder()
-          .setCustomId(`resume`)
-          .setLabel("▶")
-          .setStyle(ButtonStyle.Primary),
         new ButtonBuilder()
           .setCustomId(`forward`)
           .setLabel("⏩")
