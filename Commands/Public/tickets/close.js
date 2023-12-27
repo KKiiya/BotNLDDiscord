@@ -39,23 +39,21 @@ module.exports = {
             embed.setTitle("Ticket Closed");
             embed.setTimestamp(Date.now());
             embed.setColor(0xFF0000);
-            embed.addFields(
-                {
+            embed.addFields({
                     name: "Ticket ID",
                     value: guildData.tickets[ticket.id].count,
                     inline: true
                 },
                 {
                     name: "Closed by",
-                    value: interaction.user,
+                    value: `<@${interaction.user.id}>`,
                     inline: true
                 },
                 {
                     name: "Reason",
                     value: reason,
                     inline: true
-                },
-            );
+                });
             channel.send({ embeds: [embed] });
         }
         interaction.reply({ content: "Closed the ticket!", ephemeral: true });
