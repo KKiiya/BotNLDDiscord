@@ -3,7 +3,7 @@ const { ChatInputCommandInteraction, SlashCommandBuilder, EmbedBuilder, StringSe
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName("setchannel")
+        .setName("setticketschannel")
         .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .setDescription("Set the channel you want to create tickets."),
 

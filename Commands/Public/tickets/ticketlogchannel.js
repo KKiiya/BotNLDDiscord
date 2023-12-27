@@ -1,10 +1,11 @@
 const client = require('../../../index.js');
-const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction, PermissionFlagsBits } = require('discord.js');
 const fs = require('fs');
 
 module.exports = {
     data: new SlashCommandBuilder()
-        .setName('ticketlogchannel')
+        .setName('setticketlogchannel')
+        .setDefaultMemberPermissions(PermissionFlagsBits.Administrator)
         .setDescription('Set the ticket log channel')
         .addChannelOption(option => option.setName('channel').setDescription('The channel to set the ticket log channel to').setRequired(true)),
     /**
