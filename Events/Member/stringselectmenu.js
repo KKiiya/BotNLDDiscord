@@ -170,6 +170,7 @@ module.exports = {
                 data[guildId] = {
                     ticketsCategory: data[guildId].ticketsCategory,
                     ticketsCreationChannel: data[guildId].ticketsCreationChannel,
+                    ticketsLogChannel: data[guildId].ticketsLogChannel,
                     ticketCount: 0
                 }
                 fs.writeFileSync('data.json', JSON.stringify(data));
@@ -217,14 +218,17 @@ module.exports = {
                     }).then(channel => {
                         createdChannel = channel.id;
                         data[guildId] = {
-                            ticketsLogChannel: data[guildId].ticketsLogChannel,
                             ticketsCategory: data[guildId].ticketsCategory,
                             ticketsCreationChannel: data[guildId].ticketsCreationChannel,
+                            ticketsLogChannel: data[guildId].ticketsLogChannel,
                             ticketCount: data[guildId].ticketCount,
                             tickets : {
+                                ...data[guildId].tickets,
                                 [createdChannel]: {
                                     count: data[guildId].ticketCount,
-                                    user: interaction.user.id
+                                    user: interaction.user.id,
+                                    claimed: false,
+                                    claimedBy: null
                                 }
                             }
                         }
@@ -272,6 +276,7 @@ module.exports = {
                             ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                             ticketCount: data[guildId].ticketCount,
                             tickets : {
+                                ...data[guildId].tickets,
                                 [createdChannel]: {
                                     count: data[guildId].ticketCount,
                                     user: interaction.user.id

@@ -17,8 +17,7 @@ module.exports = {
            .setTitle(`Server Info - **${interaction.guild.name}**`)
            .setDescription(`Total members in this server **${interaction.guild.memberCount}**`)
            .setThumbnail(`${interaction.guild.iconURL()}`)
-           .addFields(
-             {
+           .addFields({
               name: 'Creation date',
               value: `${creation.getDay()}/${creation.getMonth()}/${creation.getFullYear()}`,
               inline: true
@@ -32,8 +31,7 @@ module.exports = {
               name: 'Banner',
               value: `${banner}`,
               inline: false
-             }
-           )
+             })
            .setAuthor({
                 name: `Requested by ${interaction.user.tag}`,
                 url: interaction.user.avatarURL(),

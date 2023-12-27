@@ -27,16 +27,15 @@ module.exports = {
         if (ticket.parentId !== ticketCategory) return interaction.reply({ content: "This is not a ticket!", ephemeral: true });
         if (ticket.id === ticketCreationChannel) return interaction.reply({ content: "You can't close the ticket creation channel!", ephemeral: true });
 
-        ticket.delete(reason);
-
-        guildData.ticketLogChannel = guildData.ticketLogChannel || null;
-        const channel = interaction.guild.channels.cache.get(guildData.ticketLogChannel);
+        guildData.ticketsLogChannel = guildData.ticketsLogChannel || null;
+        const channel = interaction.guild.channels.cache.get(guildData.ticketsLogChannel);
         if (channel) {
             const embed = new EmbedBuilder();
             embed.setTitle("Ticket Closed");
             embed.setTimestamp(Date.now());
             embed.setColor(0xFF0000);
-            embed.addFields({
+            embed.addFields(
+                {
                     name: "Ticket ID",
                     value: `${guildData.tickets[ticket.id].count}`,
                     inline: true
@@ -50,9 +49,15 @@ module.exports = {
                     name: "Reason",
                     value: reason,
                     inline: true
-                });
+                },
+                {
+                    name: "Creation Date",
+                    value: `${ticket.createdAt.toDateString()}`,
+                 }
+                );
             channel.send({ embeds: [embed] });
         }
+        ticket.delete(reason);
         interaction.reply({ content: "Closed the ticket!", ephemeral: true });
     }
 }

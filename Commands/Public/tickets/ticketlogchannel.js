@@ -22,7 +22,7 @@ module.exports = {
         const finalData = {
             ...json,
             [guildId]: {
-                ticketLogChannel: channel.id,
+                ticketsLogChannel: channel.id,
                 ...guildData
             }
         };
