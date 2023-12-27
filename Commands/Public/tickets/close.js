@@ -29,6 +29,7 @@ module.exports = {
 
         ticket.delete(reason);
 
+        console.log(json)
         console.log(guildData);
         guildData.ticketLogChannel = guildData.ticketLogChannel || null;
         console.log(guildData.ticketLogChannel)
