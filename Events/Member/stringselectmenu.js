@@ -221,8 +221,8 @@ module.exports = {
                             ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                             ticketCount: data[guildId].ticketCount,
                             tickets : {
-                                [data[guildId].ticketCount]: {
-                                    channel: createdChannel,
+                                [createdChannel]: {
+                                    count: data[guildId].ticketCount,
                                     user: interaction.user.id
                                 }
                             }
@@ -270,8 +270,8 @@ module.exports = {
                             ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                             ticketCount: data[guildId].ticketCount,
                             tickets : {
-                                [data[guildId].ticketCount]: {
-                                    channel: createdChannel,
+                                [createdChannel]: {
+                                    count: data[guildId].ticketCount,
                                     user: interaction.user.id
                                 }
                             }
