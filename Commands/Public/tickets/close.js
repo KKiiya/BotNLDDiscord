@@ -1,4 +1,4 @@
-const { ChatInputCommandInteraction, SlashCommandBuilder, PermissionFlagsBits } = require('discord.js');
+const { ChatInputCommandInteraction, SlashCommandBuilder, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
 const fs = require('fs');
 
 module.exports = {
@@ -28,6 +28,38 @@ module.exports = {
         if (ticket.id === ticketCreationChannel) return interaction.reply({ content: "You can't close the ticket creation channel!", ephemeral: true });
 
         ticket.delete(reason);
+
+        guildData.ticketLogChannel = guildData.ticketLogChannel || null;
+        const channel = interaction.guild.channels.cache.get(guildData.ticketLogChannel);
+        if (channel) {
+            const embed = new EmbedBuilder();
+            embed.setTitle("Ticket Closed");
+            embed.setTimestamp(Date.now());
+            embed.setColor(0xFF0000);
+            embed.addFields(
+                {
+                    name: "Ticket",
+                    value: ticket,
+                    inline: true
+                },
+                {
+                    name: "Ticket ID",
+                    value: guildData[ticket.id].count,
+                    inline: true
+                },
+                {
+                    name: "Closed by",
+                    value: interaction.user,
+                    inline: true
+                },
+                {
+                    name: "Reason",
+                    value: reason,
+                    inline: true
+                },
+            );
+            channel.send({ embeds: [embed] });
+        }
         interaction.reply({ content: "Closed the ticket!", ephemeral: true });
     }
 }
