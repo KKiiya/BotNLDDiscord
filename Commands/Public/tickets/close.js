@@ -29,7 +29,9 @@ module.exports = {
 
         ticket.delete(reason);
 
+        console.log(guildData);
         guildData.ticketLogChannel = guildData.ticketLogChannel || null;
+        console.log(guildData.ticketLogChannel)
         const channel = interaction.guild.channels.cache.get(guildData.ticketLogChannel);
         if (channel) {
             const embed = new EmbedBuilder();
