@@ -1,4 +1,4 @@
-const { Client, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, BitField, PermissionsBitField } = require("discord.js");
+const { Client, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, BitField, PermissionsBitField, ButtonBuilder } = require("discord.js");
 const fs = require("fs");
 const client = require("../..");
 
@@ -179,46 +179,24 @@ module.exports = {
             
             fs.writeFileSync('data.json', JSON.stringify(data));
             
+            let createdChannel;
+            const buttons = new ActionRowBuilder()
+                    .addComponents(
+                        new ButtonBuilder()
+                            .setCustomId("close")
+                            .setLabel(":lock: Close")
+                            .setStyle("DANGER"),
+                        new ButtonBuilder()
+                            .setCustomId("close-reason")
+                            .setLabel(":lock: Close with reason")
+                            .setStyle("PRIMARY"),
+                        new ButtonBuilder()
+                            .setCustomId("claim")
+                            .setLabel(":person_raising_hand: Claim")
+                            .setStyle("PRIMARY"));
+
             switch (value) {
                 case "resources-help":
-                    let createdChannel2;
-                    guild.channels.create({
-                        name: `ticket-${data[guildId].ticketCount}`,
-                        type: ChannelType.GuildText,
-                        parent: guild.channels.cache.find(channel => channel.id === data[guildId].ticketsCategory),
-                        permissionOverwrites: [
-                            {
-                                id: interaction.user.id,
-                                allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.AttachFiles, PermissionsBitField.Flags.ReadMessageHistory]
-                            },
-                            {
-                                id: guild.roles.everyone,
-                                deny: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.AttachFiles, PermissionsBitField.Flags.ReadMessageHistory]
-                            }
-                        ]
-                    }).then(channel => {
-                        createdChannel2 = channel.id;
-                        const embed = new EmbedBuilder()
-                            .setTitle("Ticket - Resources Help")
-                            .setDescription("Please wait for a staff member to help you!")
-                            .setColor(0xFF0000)
-                            .setFooter({
-                                text: "Ticket System",
-                                iconURL: interaction.client.user.avatarURL()
-                            })
-                            .setTimestamp(Date.now());
-                        channel.send({
-                            embeds: [embed]
-                        })
-                    })
-
-                    interaction.reply({
-                        content: `Ticket created! <#${createdChannel2}>`,
-                        ephemeral: true
-                    })
-                    break;
-                case "other-help":
-                    let createdChannel;
                     guild.channels.create({
                         name: `ticket-${data[guildId].ticketCount}`,
                         type: ChannelType.GuildText,
@@ -235,6 +213,68 @@ module.exports = {
                         ]
                     }).then(channel => {
                         createdChannel = channel.id;
+                        data[guildId] = {
+                            ticketsCategory: data[guildId].ticketsCategory,
+                            ticketsCreationChannel: data[guildId].ticketsCreationChannel,
+                            ticketCount: data[guildId].ticketCount,
+                            tickets : {
+                                [data[guildId].ticketCount]: {
+                                    channel: createdChannel,
+                                    user: interaction.user.id
+                                }
+                            }
+                        }
+                        fs.writeFileSync('data.json', JSON.stringify(data));
+                        
+                        const embed = new EmbedBuilder()
+                            .setTitle("Ticket - Resources Help")
+                            .setDescription("Please wait for a staff member to help you!")
+                            .setColor(0xFF0000)
+                            .setFooter({
+                                text: "Ticket System",
+                                iconURL: interaction.client.user.avatarURL()
+                            })
+                            .setTimestamp(Date.now());
+                        channel.send({
+                            embeds: [embed],
+                            components: [buttons]
+                        })
+                    })
+
+                    interaction.reply({
+                        content: `Ticket created! <#${createdChannel2}>`,
+                        ephemeral: true
+                    })
+                    break;
+                case "other-help":
+                    guild.channels.create({
+                        name: `ticket-${data[guildId].ticketCount}`,
+                        type: ChannelType.GuildText,
+                        parent: guild.channels.cache.find(channel => channel.id === data[guildId].ticketsCategory),
+                        permissionOverwrites: [
+                            {
+                                id: interaction.user.id,
+                                allow: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.AttachFiles, PermissionsBitField.Flags.ReadMessageHistory]
+                            },
+                            {
+                                id: guild.roles.everyone,
+                                deny: [PermissionsBitField.Flags.ViewChannel, PermissionsBitField.Flags.SendMessages, PermissionsBitField.Flags.AttachFiles, PermissionsBitField.Flags.ReadMessageHistory]
+                            }
+                        ]
+                    }).then(channel => {
+                        createdChannel = channel.id;
+                        data[guildId] = {
+                            ticketsCategory: data[guildId].ticketsCategory,
+                            ticketsCreationChannel: data[guildId].ticketsCreationChannel,
+                            ticketCount: data[guildId].ticketCount,
+                            tickets : {
+                                [data[guildId].ticketCount]: {
+                                    channel: createdChannel,
+                                    user: interaction.user.id
+                                }
+                            }
+                        }
+                        fs.writeFileSync('data.json', JSON.stringify(data));
                         const embed = new EmbedBuilder()
                             .setTitle("Ticket - Other")
                             .setDescription("Please wait for a staff member to help you!")
@@ -245,7 +285,8 @@ module.exports = {
                             })
                             .setTimestamp(Date.now());
                         channel.send({
-                            embeds: [embed]
+                            embeds: [embed],
+                            components: [buttons]
                         })
                     })
 
