@@ -189,7 +189,7 @@ module.exports = {
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("close-reason")
-                            .setLabel(":lock: Close with reason")
+                            .setLabel("Close with reason")
                             .setEmoji("🔒")
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
@@ -242,11 +242,10 @@ module.exports = {
                             embeds: [embed],
                             components: [buttons]
                         })
-                    })
-
-                    interaction.reply({
-                        content: `Ticket created! <#${createdChannel}>`,
-                        ephemeral: true
+                        interaction.reply({
+                            content: `Ticket created! <#${createdChannel}>`,
+                            ephemeral: true
+                        })
                     })
                     break;
                 case "other-help":
@@ -291,11 +290,10 @@ module.exports = {
                             embeds: [embed],
                             components: [buttons]
                         })
-                    })
-
-                    interaction.reply({
-                        content: `Ticket created! <#${createdChannel}>`,
-                        ephemeral: true
+                        interaction.reply({
+                            content: `Ticket created! <#${createdChannel}>`,
+                            ephemeral: true
+                        })
                     })
                     break;
             }

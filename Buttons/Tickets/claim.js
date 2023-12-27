@@ -1,4 +1,4 @@
-const { ButtonInteraction, PermissionFlagsBits, EmbedBuilder } = require('discord.js');
+const { ButtonInteraction, PermissionFlagsBits, EmbedBuilder, ButtonBuilder, ButtonStyle, ActionRowBuilder } = require('discord.js');
 const fs = require('fs');
 
 module.exports = {
@@ -29,7 +29,12 @@ module.exports = {
 
         const title = message.embeds[0].title;
         const components = message.components[0].components;
-        components[0].setDisabled(true);
+        const button = new ButtonBuilder()
+            .setCustomId("claim")
+            .setLabel("Claim")
+            .setStyle(ButtonStyle.Success)
+            .setDisabled(true);
+        const row = new ActionRowBuilder().addComponents(components[0], components[1], button);
 
         const embed = new EmbedBuilder()
             .setTitle(`${title} (Claimed)`)
@@ -38,7 +43,7 @@ module.exports = {
             .setTimestamp(Date.now())
             .setColor("Green");
         
-        message.edit({ embeds: [embed] ,components: [components] });
+        message.edit({ embeds: [embed], components: [row] });
         interaction.reply({ content: "Ticket claimed!", ephemeral: true });
     }
 }
