@@ -1,4 +1,4 @@
-const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, PermissionsBitField, ButtonBuilder } = require("discord.js");
+const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle } = require("discord.js");
 const fs = require("fs");
 const client = require("../..");
 
@@ -185,15 +185,15 @@ module.exports = {
                         new ButtonBuilder()
                             .setCustomId("close")
                             .setLabel(":lock: Close")
-                            .setStyle("DANGER"),
+                            .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("close-reason")
                             .setLabel(":lock: Close with reason")
-                            .setStyle("PRIMARY"),
+                            .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("claim")
                             .setLabel(":person_raising_hand: Claim")
-                            .setStyle("PRIMARY"));
+                            .setStyle(ButtonStyle.Primary));
 
             switch (value) {
                 case "resources-help":
