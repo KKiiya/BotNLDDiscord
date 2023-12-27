@@ -47,7 +47,7 @@ module.exports = {
                 },
                 {
                     name: "Ticket ID",
-                    value: guildData[ticket.id].count,
+                    value: guildData.tickets[ticket.id].count,
                     inline: true
                 },
                 {
