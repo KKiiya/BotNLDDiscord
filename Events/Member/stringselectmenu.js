@@ -279,7 +279,9 @@ module.exports = {
                                 ...data[guildId].tickets,
                                 [createdChannel]: {
                                     count: data[guildId].ticketCount,
-                                    user: interaction.user.id
+                                    user: interaction.user.id,
+                                    claimed: false,
+                                    claimedBy: null
                                 }
                             }
                         }

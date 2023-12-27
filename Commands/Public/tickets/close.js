@@ -41,6 +41,11 @@ module.exports = {
                     inline: true
                 },
                 {
+                    name: "Created by",
+                    value: `<@${guildData.tickets[ticket.id].user}>`,
+                    inline: true
+                },
+                {
                     name: "Closed by",
                     value: `<@${interaction.user.id}>`,
                     inline: true
@@ -52,9 +57,19 @@ module.exports = {
                 },
                 {
                     name: "Creation Date",
-                    value: `${ticket.createdAt.toDateString()}`,
-                 }
-                );
+                    value: `<t:${ticket.createdTimestamp}:R>`,
+                 },
+                {
+                    name: "Closed Date",
+                    value: `<t:${Date.now()}:R>`,
+                    inline: true
+                },
+                {
+                    name: "Claimed by",
+                    value: `<@${guildData.tickets[ticket.id].claimedBy}>` || "Not claimed",
+                    inline: true
+                });
+            embed.setThumbnail(interaction.guild.iconURL());
             channel.send({ embeds: [embed] });
         }
         ticket.delete(reason);
