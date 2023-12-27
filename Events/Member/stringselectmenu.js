@@ -242,7 +242,7 @@ module.exports = {
                     })
 
                     interaction.reply({
-                        content: `Ticket created! <#${createdChannel2}>`,
+                        content: `Ticket created! <#${createdChannel}>`,
                         ephemeral: true
                     })
                     break;
