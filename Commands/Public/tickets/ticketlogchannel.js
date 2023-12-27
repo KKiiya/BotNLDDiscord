@@ -19,8 +19,13 @@ module.exports = {
         const guildData = json[guildId];
         const channel = interaction.options.getChannel('channel');
 
-        guildData.ticketLogChannel = channel.id;
-        fs.writeFileSync('data.json', JSON.stringify(json));
+        const finalData = {
+            [guildId]: {
+                ...guildData,
+                ticketLogChannel: channel.id
+            }
+        };
+        fs.writeFileSync('data.json', JSON.stringify(finalData));
         interaction.reply({ content: `Set the ticket log channel to ${channel}!`, ephemeral: true });
     }
 }
