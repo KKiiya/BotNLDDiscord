@@ -32,6 +32,7 @@ module.exports = {
         const button = new ButtonBuilder()
             .setCustomId("claim")
             .setLabel("Claim")
+            .setEmoji("🙋‍♂️")
             .setStyle(ButtonStyle.Success)
             .setDisabled(true);
         const row = new ActionRowBuilder().addComponents(components[0], components[1], button);
