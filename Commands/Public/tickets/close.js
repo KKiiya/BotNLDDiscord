@@ -23,6 +23,21 @@ module.exports = {
         const ticketCreationChannel = guildData.ticketsCreationChannel;
         const ticket = interaction.channel;
         const reason = interaction.options.getString("reason") || "No reason provided.";
+        const claimedBy = guildData.tickets[ticket.id].claimedBy;
+        let finalField;
+        if (claimedBy == null) {
+            finalField = {
+                name: "Claimed by",
+                value: "Not claimed",
+                inline: true
+            }
+        } else {
+            finalField = {
+                name: "Claimed by",
+                value: `<@${claimedBy}>`,
+                inline: true
+            }
+        }
 
         if (ticket.parentId !== ticketCategory) return interaction.reply({ content: "This is not a ticket!", ephemeral: true });
         if (ticket.id === ticketCreationChannel) return interaction.reply({ content: "You can't close the ticket creation channel!", ephemeral: true });
@@ -57,18 +72,14 @@ module.exports = {
                 },
                 {
                     name: "Creation Date",
-                    value: `<t:${ticket.createdTimestamp}:R>`,
+                    value: `<t:${ticket.createdTimestamp}:F>`,
+                    inline: true
                  },
                 {
                     name: "Closed Date",
-                    value: `<t:${Date.now()}:R>`,
+                    value: `<t:${Date.now()}:F>`,
                     inline: true
-                },
-                {
-                    name: "Claimed by",
-                    value: `<@${guildData.tickets[ticket.id].claimedBy}>` || "Not claimed",
-                    inline: true
-                });
+                }, finalField);
             embed.setThumbnail(interaction.guild.iconURL());
             channel.send({ embeds: [embed] });
         }
