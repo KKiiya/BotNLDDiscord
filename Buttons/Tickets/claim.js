@@ -37,6 +37,21 @@ module.exports = {
             .setDisabled(true);
         const row = new ActionRowBuilder().addComponents(components[0], components[1], button);
 
+        const finalData = {
+            ...json,
+            [guildId]: {
+                ...guildData,
+                tickets: {
+                    [ticket.id]: {
+                        claimedBy: member.id,
+                        claimed: true,
+                        ...guildData.tickets[ticket.id]
+                    }
+                }
+            }
+        };
+        fs.writeFileSync('data.json', JSON.stringify(finalData));
+        
         const embed = new EmbedBuilder()
             .setTitle(`${title} (Claimed)`)
             .setDescription(`This ticket has been claimed by ${member.displayName}`)

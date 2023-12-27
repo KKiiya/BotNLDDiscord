@@ -72,7 +72,7 @@ module.exports = {
                 },
                 {
                     name: "Creation Date",
-                    value: `<t:${ticket.createdTimestamp}:F>`,
+                    value: `<t:${ticket.createdAt.getMilliseconds()}:F>`,
                     inline: true
                  },
                 {

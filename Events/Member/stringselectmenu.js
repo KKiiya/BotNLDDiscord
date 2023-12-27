@@ -1,10 +1,15 @@
-const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle } = require("discord.js");
+const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, PermissionsBitField, ButtonBuilder, ButtonStyle, StringSelectMenuInteraction } = require("discord.js");
 const fs = require("fs");
 const client = require("../..");
 
 module.exports = {
     name: 'interactionCreate',
     onde: true,
+    /**
+     * 
+     * @param {StringSelectMenuInteraction} interaction 
+     * @returns 
+     */
     async execute(interaction) {
         if (!interaction.isStringSelectMenu()) return;
         const { guild } = interaction;
