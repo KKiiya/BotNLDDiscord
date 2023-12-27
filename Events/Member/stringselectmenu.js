@@ -184,15 +184,18 @@ module.exports = {
                     .addComponents(
                         new ButtonBuilder()
                             .setCustomId("close")
-                            .setLabel(":lock: Close")
+                            .setLabel("Close")
+                            .setEmoji("🔒")
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("close-reason")
                             .setLabel(":lock: Close with reason")
+                            .setEmoji("🔒")
                             .setStyle(ButtonStyle.Danger),
                         new ButtonBuilder()
                             .setCustomId("claim")
-                            .setLabel(":person_raising_hand: Claim")
+                            .setLabel("Claim")
+                            .setEmoji("🙋‍♂️")
                             .setStyle(ButtonStyle.Primary));
 
             switch (value) {

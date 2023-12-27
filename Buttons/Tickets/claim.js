@@ -28,8 +28,8 @@ module.exports = {
         if (!member.permissions.has(PermissionFlagsBits.Administrator)) return interaction.reply({ content: "You don't have permission to claim this ticket!", ephemeral: true });
 
         const title = message.embeds[0].title;
-        const components = message.components[0].components;
-        components[2].options[0].setDisabled(true);
+        const components = message.components[0];
+        console.log(components);
 
         const embed = new EmbedBuilder()
             .setTitle(`${title} (Claimed)`)
