@@ -28,8 +28,8 @@ module.exports = {
         if (!member.permissions.has(PermissionFlagsBits.Administrator)) return interaction.reply({ content: "You don't have permission to claim this ticket!", ephemeral: true });
 
         const title = message.embeds[0].title;
-        const components = message.components[0];
-        console.log(components);
+        const components = message.components[0].components;
+        components[0].setDisabled(true);
 
         const embed = new EmbedBuilder()
             .setTitle(`${title} (Claimed)`)
@@ -39,5 +39,6 @@ module.exports = {
             .setColor("Green");
         
         message.edit({ embeds: [embed] ,components: [components] });
+        interaction.reply({ content: "Ticket claimed!", ephemeral: true });
     }
 }
