@@ -1,0 +1,25 @@
+const client = require('../../../index.js');
+const { SlashCommandBuilder, ChatInputCommandInteraction } = require('discord.js');
+const fs = require('fs');
+
+module.exports = {
+    data: new SlashCommandBuilder()
+        .setName('ticketlogchannel')
+        .setDescription('Set the ticket log channel')
+        .addChannelOption(option => option.setName('channel').setDescription('The channel to set the ticket log channel to').setRequired(true)),
+    /**
+     * 
+     * @param {ChatInputCommandInteraction} interaction 
+     */
+    async execute(interaction) {
+        const data = fs.readFileSync('data.json');
+        const json = JSON.parse(data);
+        const guildId = interaction.guild.id;
+        const guildData = json[guildId];
+        const channel = interaction.options.getChannel('channel');
+
+        guildData.ticketLogChannel = channel.id;
+        fs.writeFileSync('data.json', JSON.stringify(json));
+        interaction.reply({ content: `Set the ticket log channel to ${channel}!`, ephemeral: true });
+    }
+}

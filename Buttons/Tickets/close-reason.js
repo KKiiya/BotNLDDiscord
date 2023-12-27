@@ -22,9 +22,8 @@ module.exports = {
         if (ticket.id === ticketCreationChannel) return interaction.reply({ content: "You can't close the ticket creation channel!", ephemeral: true });
 
         const modal = new ModalBuilder()
-            .setTitle("Close Reason")
-            .setDescription("Why are you closing this ticket?")
-            .setCustomId("closeModal");
+            .setCustomId("closeModal")
+            .setTitle("Close Ticket");
         const text = new TextInputBuilder()
             .setCustomId("closeReason")
             .setLabel("Why are you closing this ticket?")
