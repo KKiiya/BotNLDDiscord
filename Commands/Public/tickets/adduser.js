@@ -29,7 +29,13 @@ module.exports = {
         if (ticket.id === ticketCreationChannel) return interaction.reply({ content: "You can't add a user to the ticket creation channel!", ephemeral: true });
         if (ticket.permissionOverwrites.cache.has(user.id)) return interaction.reply({ content: "This user is already in the ticket!", ephemeral: true });
 
-        ticket.permissionOverwrites.create(user.id, { VIEW_CHANNEL: true, SEND_MESSAGES: true, READ_MESSAGE_HISTORY: true });
+        ticket.permissionOverwrites.create(user.id, {
+            ViewChannel: true,
+            SendMessages: true,
+            ReadMessageHistory: true,
+            AttachFiles: true,
+            EmbedLinks: true,
+        });
         interaction.reply({ content: `Added ${user} to the ticket!`, ephemeral: true });
     }
 }
