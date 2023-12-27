@@ -217,6 +217,7 @@ module.exports = {
                     }).then(channel => {
                         createdChannel = channel.id;
                         data[guildId] = {
+                            ticketsLogChannel: data[guildId].ticketsLogChannel,
                             ticketsCategory: data[guildId].ticketsCategory,
                             ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                             ticketCount: data[guildId].ticketCount,
@@ -266,6 +267,7 @@ module.exports = {
                     }).then(channel => {
                         createdChannel = channel.id;
                         data[guildId] = {
+                            ticketsLogChannel: data[guildId].ticketsLogChannel,
                             ticketsCategory: data[guildId].ticketsCategory,
                             ticketsCreationChannel: data[guildId].ticketsCreationChannel,
                             ticketCount: data[guildId].ticketCount,
