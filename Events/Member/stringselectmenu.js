@@ -1,4 +1,4 @@
-const { Client, ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, BitField, PermissionsBitField, ButtonBuilder } = require("discord.js");
+const { ActionRowBuilder, StringSelectMenuBuilder, StringSelectMenuOptionBuilder, EmbedBuilder, ChannelType, PermissionsBitField, ButtonBuilder } = require("discord.js");
 const fs = require("fs");
 const client = require("../..");
 
