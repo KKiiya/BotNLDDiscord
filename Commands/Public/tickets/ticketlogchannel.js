@@ -20,9 +20,10 @@ module.exports = {
         const channel = interaction.options.getChannel('channel');
 
         const finalData = {
+            ...json,
             [guildId]: {
-                ...guildData,
-                ticketLogChannel: channel.id
+                ticketLogChannel: channel.id,
+                ...guildData
             }
         };
         fs.writeFileSync('data.json', JSON.stringify(finalData));
