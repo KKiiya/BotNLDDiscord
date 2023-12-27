@@ -41,11 +41,6 @@ module.exports = {
             embed.setColor(0xFF0000);
             embed.addFields(
                 {
-                    name: "Ticket",
-                    value: ticket,
-                    inline: true
-                },
-                {
                     name: "Ticket ID",
                     value: guildData.tickets[ticket.id].count,
                     inline: true
