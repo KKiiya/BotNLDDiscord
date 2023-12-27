@@ -42,16 +42,17 @@ module.exports = {
             [guildId]: {
                 ...guildData,
                 tickets: {
+                    ...guildData.tickets,
                     [ticket.id]: {
+                        ...guildData.tickets[ticket.id],
                         claimedBy: member.id,
-                        claimed: true,
-                        ...guildData.tickets[ticket.id]
+                        claimed: true
                     }
                 }
             }
         };
         fs.writeFileSync('data.json', JSON.stringify(finalData));
-        
+
         const embed = new EmbedBuilder()
             .setTitle(`${title} (Claimed)`)
             .setDescription(`This ticket has been claimed by ${member.displayName}`)
